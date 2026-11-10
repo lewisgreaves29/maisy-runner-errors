@@ -4,6 +4,7 @@
 
 import { Engine } from './game/Engine';
 import { getErrorContext } from './web/error-context';
+import { trackUmamiEvent } from './web/analytics';
 
 export function bootstrap(): Engine | null {
   // 1. Parse and apply error context
@@ -36,6 +37,15 @@ export function bootstrap(): Engine | null {
     }
 
     document.title = `${errorDetails.title} — GreavesLabs`;
+
+    // Track HTTP error occurrence in Umami
+    trackUmamiEvent('http-error', {
+      statusCode: errorDetails.statusCode,
+      path: window.location.pathname,
+      url: window.location.href,
+      referrer: document.referrer || '(direct)',
+      host: errorDetails.host,
+    });
   }
 
   // 2. Initialize Game Engine
@@ -47,6 +57,12 @@ export function bootstrap(): Engine | null {
 
   const engine = new Engine({
     canvas,
+    onGameOver: (score, highScore) => {
+      trackUmamiEvent('runner-game-over', {
+        score,
+        highScore,
+      });
+    },
   });
 
   return engine;
