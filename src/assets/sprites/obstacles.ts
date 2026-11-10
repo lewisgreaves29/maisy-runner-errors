@@ -20,20 +20,20 @@ export interface ObstacleTypeDefinition {
 export const OBSTACLE_TYPES: Record<string, ObstacleTypeDefinition> = {
   STONE_WALL: {
     type: 'STONE_WALL',
-    width: 42,
-    height: 28,
-    hitboxInset: { x: 5, y: 5 },
+    width: 34,
+    height: 26,
+    hitboxInset: { x: 4, y: 4 },
   },
   WOODEN_FENCE: {
     type: 'WOODEN_FENCE',
-    width: 24,
-    height: 36,
-    hitboxInset: { x: 5, y: 5 },
+    width: 20,
+    height: 32,
+    hitboxInset: { x: 4, y: 4 },
   },
   MUD_PUDDLE: {
     type: 'MUD_PUDDLE',
-    width: 32,
-    height: 12,
+    width: 28,
+    height: 10,
     hitboxInset: { x: 4, y: 3 },
   },
 };
@@ -61,8 +61,8 @@ export function drawStoneWall(
   ctx: CanvasRenderingContext2D,
   x: number,
   y: number,
-  width = 48,
-  height = 32,
+  width = 34,
+  height = 26,
 ): void {
   ctx.save();
   ctx.translate(x, y);
@@ -73,10 +73,9 @@ export function drawStoneWall(
 
   // Layered course stone pattern (Gritstone dry-stone masonry)
   const courses = [
-    { y: 0, h: 7, blocks: [12, 14, 11, 11] },
-    { y: 7, h: 8, blocks: [16, 12, 20] },
-    { y: 15, h: 8, blocks: [10, 18, 20] },
-    { y: 23, h: 9, blocks: [14, 15, 19] },
+    { y: 0, h: Math.round(height * 0.3), blocks: [10, 12, 12] },
+    { y: Math.round(height * 0.3), h: Math.round(height * 0.35), blocks: [14, 10, 10] },
+    { y: Math.round(height * 0.65), h: height - Math.round(height * 0.65), blocks: [11, 13, 10] },
   ];
 
   courses.forEach((course, cIdx) => {
@@ -85,11 +84,11 @@ export function drawStoneWall(
       // Alternate shades for natural stone texture
       ctx.fillStyle =
         (cIdx + bIdx) % 2 === 0 ? LANDSCAPE_COLORS.stoneBase : LANDSCAPE_COLORS.stoneLight;
-      ctx.fillRect(curX + 1, course.y + 1, bWidth - 2, course.h - 2);
+      ctx.fillRect(curX + 1, course.y + 1, Math.min(bWidth - 2, width - curX - 2), course.h - 2);
 
       // Shadow underside of each stone
       ctx.fillStyle = LANDSCAPE_COLORS.stoneDark;
-      ctx.fillRect(curX + 1, course.y + course.h - 2, bWidth - 2, 1);
+      ctx.fillRect(curX + 1, course.y + course.h - 2, Math.min(bWidth - 2, width - curX - 2), 1);
 
       curX += bWidth;
     });
@@ -113,15 +112,15 @@ export function drawWoodenFence(
   ctx: CanvasRenderingContext2D,
   x: number,
   y: number,
-  width = 28,
-  height = 44,
+  width = 20,
+  height = 32,
 ): void {
   ctx.save();
   ctx.translate(x, y);
 
   // 2 vertical posts
-  const postWidth = 6;
-  const posts = [2, width - postWidth - 2];
+  const postWidth = 5;
+  const posts = [1, width - postWidth - 1];
 
   posts.forEach((pX) => {
     // Weathered timber post
@@ -142,8 +141,8 @@ export function drawWoodenFence(
 
   // 2 horizontal rails across posts
   const rails = [
-    { y: 12, h: 6 },
-    { y: 28, h: 6 },
+    { y: Math.round(height * 0.28), h: 4.5 },
+    { y: Math.round(height * 0.65), h: 4.5 },
   ];
 
   rails.forEach((rail) => {

@@ -12,10 +12,10 @@
  * - AABB Collision detection with 4px inset hitboxes
  */
 
-export const GRAVITY = 1.45;
-export const INITIAL_JUMP_VELOCITY = -14.5;
-export const TERMINAL_VELOCITY = 16;
-export const JUMP_CUT_VELOCITY = -7.5;
+export const GRAVITY = 0.8;
+export const INITIAL_JUMP_VELOCITY = -11.6;
+export const TERMINAL_VELOCITY = 14;
+export const JUMP_CUT_VELOCITY = -8.5;
 
 export const BASE_HORIZONTAL_SPEED = 6;
 export const MAX_HORIZONTAL_SPEED = 16;
@@ -145,9 +145,9 @@ export function getPlayerHitbox(
   const effectiveHeight = isDucking ? baseHeight * 0.6 : baseHeight;
   const yOffset = isDucking ? baseHeight * 0.4 : 0;
 
-  // In mid-air, Maisy tucks paws and streamlines ears/tail: provide 4px extra horizontal margin
-  const horizontalInset = isJumping ? inset + 4 : inset;
-  const verticalInset = isJumping ? inset + 2 : inset;
+  // In mid-air, Maisy tucks paws and streamlines ears/tail: provide 8px extra horizontal and 4px extra vertical margin
+  const horizontalInset = isJumping ? inset + 8 : inset;
+  const verticalInset = isJumping ? inset + 4 : inset;
 
   const width = Math.max(0, baseWidth - horizontalInset * 2);
   const height = Math.max(0, effectiveHeight - verticalInset * 2);

@@ -48,9 +48,9 @@ describe('Collision Detection & Hitbox Boundaries', () => {
         INSET,
         true,
       );
-      // Jumping adds 4px horizontal inset (total 8px) and 2px vertical inset (total 6px)
-      expect(jumpingHitbox.width).toBe(DEFAULT_WIDTH - (INSET + 4) * 2);
-      expect(jumpingHitbox.height).toBe(DEFAULT_HEIGHT - (INSET + 2) * 2);
+      // Jumping adds 8px horizontal inset (total 12px) and 4px vertical inset (total 8px)
+      expect(jumpingHitbox.width).toBe(DEFAULT_WIDTH - (INSET + 8) * 2);
+      expect(jumpingHitbox.height).toBe(DEFAULT_HEIGHT - (INSET + 4) * 2);
     });
   });
 
