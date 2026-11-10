@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>GreavesLabs — Maisy Runner</title>
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='45' fill='%234A614E'/><circle cx='50' cy='50' r='20' fill='%23FAF7F2'/></svg>" />
+    <link rel="stylesheet" href="/src/web/styles.css" />
+  </head>
+  <body>
+    <!-- Ambient Organic Eco-Tech Glows -->
+    <div class="ambient-glow" aria-hidden="true">
+      <div class="glow-circle glow-1"></div>
+      <div class="glow-circle glow-2"></div>
+    </div>
+
+    <div class="page-container">
+      <!-- Site Header -->
+      <header class="site-header">
+        <a href="https://www.greaveslabs.io" class="brand-badge" aria-label="GreavesLabs Home">
+          <span>greaveslabs</span>.io
+        </a>
+        <div class="status-badge" id="cluster-status">
+          <span class="status-dot"></span>
+          <span>Status: Shaw-1</span>
+        </div>
+      </header>
+
+      <!-- Dynamic Error Title & Message -->
+      <section class="hero-section">
+        <h1 class="error-title" id="error-title">404 - LOST IN THE HILLS</h1>
+        <p class="error-desc" id="error-message">
+          The page you're looking for has wandered off into the Pennines.
+        </p>
+        <div class="play-prompt">Press [SPACE] or Tap Screen to play</div>
+      </section>
+
+      <!-- Endless Runner Canvas Viewport -->
+      <main class="game-viewport">
+        <canvas id="game-canvas" width="800" height="240" aria-label="Maisy Cocker Spaniel Endless Runner Game" tabindex="0"></canvas>
+      </main>
+
+      <!-- Action Navigation Links -->
+      <nav class="cta-group" aria-label="Recovery navigation">
+        <a href="https://www.greaveslabs.io" class="btn btn-primary" rel="noopener noreferrer">
+          Return to GreavesLabs
+        </a>
+        <a href="https://home.greaveslabs.io" class="btn btn-secondary" rel="noopener noreferrer">
+          Open Service Portal
+        </a>
+      </nav>
+
+      <!-- Diagnostics Footer -->
+      <footer class="diagnostics-footer">
+        <p id="diagnostics-text">
+          Host: <span id="diag-host">k3s-worker-01</span>
+          <span class="diagnostics-sep">|</span>
+          RayID: <span id="diag-rayid">e7a9c8b</span>
+          <span class="diagnostics-sep">|</span>
+          Cluster: <span id="diag-cluster">greaveslabs.io</span>
+        </p>
+      </footer>
+    </div>
+
+    <!-- Bootstrap Game Engine & Error Context -->
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>

@@ -1,0 +1,76 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: maisy-error-service
+  namespace: kube-system
+  labels:
+    app: maisy-error-service
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: maisy-error-service
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 0
+  template:
+    metadata:
+      labels:
+        app: maisy-error-service
+    spec:
+      affinity:
+        podAntiAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+            - weight: 100
+              podAffinityTerm:
+                labelSelector:
+                  matchExpressions:
+                    - key: app
+                      operator: In
+                      values:
+                        - maisy-error-service
+                topologyKey: kubernetes.io/hostname
+      containers:
+        - name: maisy-runner
+          image: ghcr.io/lewisgreaves/maisy-runner-errors:latest
+          imagePullPolicy: IfNotPresent
+          ports:
+            - name: http
+              containerPort: 80
+          livenessProbe:
+            httpGet:
+              path: /healthz
+              port: 80
+            initialDelaySeconds: 3
+            periodSeconds: 10
+            timeoutSeconds: 2
+          readinessProbe:
+            httpGet:
+              path: /healthz
+              port: 80
+            initialDelaySeconds: 2
+            periodSeconds: 5
+            timeoutSeconds: 2
+          resources:
+            requests:
+              cpu: 10m
+              memory: 16Mi
+            limits:
+              cpu: 100m
+              memory: 64Mi
+          securityContext:
+            readOnlyRootFilesystem: false
+            runAsNonRoot: false
+---
+apiVersion: policy/v1
+kind: PodDisruptionBudget
+metadata:
+  name: maisy-error-service-pdb
+  namespace: kube-system
+spec:
+  minAvailable: 1
+  selector:
+    matchLabels:
+      app: maisy-error-service
