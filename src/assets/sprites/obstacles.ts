@@ -20,20 +20,20 @@ export interface ObstacleTypeDefinition {
 export const OBSTACLE_TYPES: Record<string, ObstacleTypeDefinition> = {
   STONE_WALL: {
     type: 'STONE_WALL',
-    width: 48,
-    height: 32,
-    hitboxInset: { x: 4, y: 4 },
+    width: 42,
+    height: 28,
+    hitboxInset: { x: 5, y: 5 },
   },
   WOODEN_FENCE: {
     type: 'WOODEN_FENCE',
-    width: 28,
-    height: 44,
-    hitboxInset: { x: 4, y: 4 },
+    width: 24,
+    height: 36,
+    hitboxInset: { x: 5, y: 5 },
   },
   MUD_PUDDLE: {
     type: 'MUD_PUDDLE',
-    width: 38,
-    height: 14,
+    width: 32,
+    height: 12,
     hitboxInset: { x: 4, y: 3 },
   },
 };

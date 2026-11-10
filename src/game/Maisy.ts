@@ -119,6 +119,7 @@ export class Maisy {
       this.height,
       this.physicsState.isDucking,
       4,
+      !this.physicsState.isGrounded,
     );
   }
 

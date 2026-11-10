@@ -125,8 +125,8 @@ describe('Physics Engine', () => {
         isDucking: false,
       };
 
-      state = initiateJump(state); // vy = -14
-      expect(state.vy).toBe(-14);
+      state = initiateJump(state);
+      expect(state.vy).toBe(INITIAL_JUMP_VELOCITY);
 
       // Release jump key on next tick
       state = updatePlayerPhysics(state, 0, false);

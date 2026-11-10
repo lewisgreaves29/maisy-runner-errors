@@ -1,5 +1,6 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { Maisy } from '../../src/game/Maisy';
+import { JUMP_CUT_VELOCITY } from '../../src/game/Physics';
 import { drawMaisy, MAISY_SPRITES } from '../../src/assets/sprites/maisy';
 
 describe('Maisy Entity & Visual Sprites', () => {
@@ -26,7 +27,7 @@ describe('Maisy Entity & Visual Sprites', () => {
     maisy.jump();
     maisy.releaseJump();
     expect(maisy.isJumpHeld).toBe(false);
-    expect(maisy.physicsState.vy).toBeGreaterThanOrEqual(-4);
+    expect(maisy.physicsState.vy).toBeGreaterThanOrEqual(JUMP_CUT_VELOCITY);
   });
 
   it('sets ducking state when grounded', () => {

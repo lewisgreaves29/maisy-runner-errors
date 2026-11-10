@@ -37,6 +37,21 @@ describe('Collision Detection & Hitbox Boundaries', () => {
       expect(duckingHitboxWithInset.height).toBe(16);
       expect(duckingHitboxWithInset.width).toBe(DEFAULT_WIDTH - INSET * 2);
     });
+
+    it('applies jumping tucked-paw hitbox inset to ensure aerodynamic clearance', () => {
+      const jumpingHitbox = getPlayerHitbox(
+        0,
+        160,
+        DEFAULT_WIDTH,
+        DEFAULT_HEIGHT,
+        false,
+        INSET,
+        true,
+      );
+      // Jumping adds 4px horizontal inset (total 8px) and 2px vertical inset (total 6px)
+      expect(jumpingHitbox.width).toBe(DEFAULT_WIDTH - (INSET + 4) * 2);
+      expect(jumpingHitbox.height).toBe(DEFAULT_HEIGHT - (INSET + 2) * 2);
+    });
   });
 
   describe('Stone Wall Collision Intersections', () => {
