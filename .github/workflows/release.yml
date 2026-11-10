@@ -8,7 +8,7 @@ on:
 
 env:
   REGISTRY: ghcr.io
-  IMAGE_NAME: lewisgreaves/maisy-runner-errors
+  IMAGE_NAME: ${{ github.repository }}
 
 jobs:
   build-and-push:

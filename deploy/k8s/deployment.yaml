@@ -32,9 +32,11 @@ spec:
                       values:
                         - maisy-error-service
                 topologyKey: kubernetes.io/hostname
+      imagePullSecrets:
+        - name: ghcr-pull-secret
       containers:
         - name: maisy-runner
-          image: ghcr.io/lewisgreaves/maisy-runner-errors:latest
+          image: ghcr.io/lewisgreaves29/maisy-runner-errors:latest
           imagePullPolicy: IfNotPresent
           ports:
             - name: http
