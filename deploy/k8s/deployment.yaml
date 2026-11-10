@@ -37,7 +37,7 @@ spec:
       containers:
         - name: maisy-runner
           image: ghcr.io/lewisgreaves29/maisy-runner-errors:latest
-          imagePullPolicy: IfNotPresent
+          imagePullPolicy: Always
           ports:
             - name: http
               containerPort: 80
