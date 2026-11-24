@@ -29,31 +29,6 @@
   --transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-/* Fallback local font-face definitions */
-@font-face {
-  font-family: 'Fraunces';
-  font-style: normal;
-  font-weight: 400 900;
-  font-display: swap;
-  src: local('Fraunces'), local('Georgia'), serif;
-}
-
-@font-face {
-  font-family: 'Plus Jakarta Sans';
-  font-style: normal;
-  font-weight: 400 700;
-  font-display: swap;
-  src: local('Plus Jakarta Sans'), local('Inter'), system-ui, sans-serif;
-}
-
-@font-face {
-  font-family: 'Fira Code';
-  font-style: normal;
-  font-weight: 400 600;
-  font-display: swap;
-  src: local('Fira Code'), local('Cascadia Code'), ui-monospace, monospace;
-}
-
 * {
   box-sizing: border-box;
   margin: 0;
@@ -247,14 +222,14 @@ canvas#game-canvas {
 }
 
 .btn-primary {
-  background-color: var(--terracotta);
+  background-color: var(--sage-green);
   color: var(--pure-white);
   border: 1px solid transparent;
-  box-shadow: 0 2px 8px rgba(212, 124, 89, 0.25);
+  box-shadow: 0 4px 14px rgba(74, 97, 78, 0.22);
 }
 
 .btn-primary:hover {
-  background-color: var(--terracotta-hover);
+  background-color: var(--sage-green-hover);
   transform: translateY(-1px);
 }
 
